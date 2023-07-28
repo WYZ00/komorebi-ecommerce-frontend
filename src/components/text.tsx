@@ -42,8 +42,17 @@ const variants: Record<Variant, string> = {
   "caption-four": "uppercase text-xl leading-[18px] text-raisin-black",
 };
 
-const Text = ({ children, varient = "heading-one", className }: TextProps) => {
-  return <p className={clsx(variants[varient], className)}>{children}</p>;
+const Text = ({
+  children,
+  varient = "heading-one",
+  className,
+  ...props
+}: TextProps) => {
+  return (
+    <p className={clsx(variants[varient], className)} {...props}>
+      {children}
+    </p>
+  );
 };
 
 export default Text;

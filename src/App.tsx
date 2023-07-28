@@ -1,5 +1,6 @@
 import Inspx from "inspx";
 import Text from "./components/text";
+import Button from "./components/button";
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
         <Text className="my-6" varient="subheading-three">
           Custom reusable subheading components
         </Text>
+        <Button size="large">Proceed to checkout</Button>
+        <Button size="small" className="border-4 border-pink-500 mx-4" onClick={() => {}} disabled>
+          Proceed to checkout
+        </Button>
       </Inspx>
     </>
   );
