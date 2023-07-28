@@ -16,6 +16,7 @@ export default {
         "violet-blue-2": "#3738A6",
         auqamarine: "#B2FCE4",
         red: "#DF1B41",
+        cream: "#E8E0D0",
       },
     },
   },
