@@ -3,9 +3,12 @@ import Text from "../../components/text";
 import { IProduct } from "../../types";
 import axios from "../../api/axios";
 import Button from "../../components/button";
+import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
+
+  const navigate = useNavigate();
 
   const getProducts = async () => {
     try {
@@ -61,7 +64,12 @@ const Shop = () => {
                 {product.name}
               </Text>
               <Text varient="body-three">$ {product.price}</Text>
-              <Button size="small" className="mt-7">
+              <Button
+                size="small"
+                className="mt-7"
+                onClick={() => {
+                  navigate(`/shop/${product._id}`);
+                }}>
                 Add to bag
               </Button>
             </div>
