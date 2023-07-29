@@ -3,6 +3,7 @@ import Root from "./components/routes/root";
 import Home from "./pages/home";
 import Cart from "./pages/cart";
 import Shop from "./pages/shop";
+import ProductDetails from "./pages/product-details";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
+      },
+      {
+        path: "/shop/:id",
+        element: <ProductDetails />,
       },
     ],
   },

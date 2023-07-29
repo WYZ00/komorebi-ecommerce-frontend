@@ -3,7 +3,7 @@ import Text from "./text";
 
 const Footer = () => {
   return (
-    <div className="bg-martian-blue py-[100px] px-[50px] ">
+    <div className="bg-martian-blue py-[100px] pb-6 px-[50px] ">
       <div className="flex items-center justify-between">
         <div>
           <Text varient="heading-three" className="text-white">

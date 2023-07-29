@@ -1,10 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../../api/axios";
 import Button from "../../components/button";
 import Icon from "../../components/icons";
 import Text from "../../components/text";
-import { useEffect, useState } from "react";
 import { IProduct } from "../../types";
-import axios from "../../api/axios";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -22,7 +22,6 @@ const Home = () => {
 
   useEffect(() => {
     getProducts();
-
     return () => {};
   }, []);
 
@@ -35,40 +34,41 @@ const Home = () => {
       <img
         className="absolute min-h-screen object-cover -top-[102px] -z-10"
         src="https://res.cloudinary.com/dbspz5tmg/image/upload/v1679743571/youtube/2023/march/komorebi-development/young-person-wearing-hoodie-mockup_2_mf5tty.png"
-        alt=""
       />
-      <div className="mx-[50px] min-h-screen flex flex-col items-start justify-end pb-56">
+      <div className="div mx-[50px] min-h-screen flex flex-col justify-end items-start pb-56">
         <Text varient="heading-two">HOODIE HEAVEN</Text>
         <Button className="mt-7" onClick={navigateToShop}>
           <span className="flex">
             <Icon name="arrow-small-right" />
-            <span className="ml-[10px]">Shop Now</span>
+            <span className="ml-[10px]">Shop now</span>
           </span>
         </Button>
       </div>
       <div className="grid grid-cols-3 gap-[38px] mt-[200px] mx-[50px]">
-        {products.slice(0, 3).map((productItem) => (
-          <div
-            key={productItem._id}
-            className="flex items-center justify-center flex-col">
-            <Text varient="heading-three">{productItem.name}</Text>
-            <div className="bg-cream rounded-[18px] p-4 my-[32px]">
-              <img
-                width={368}
-                height={368}
-                className="w-[368px] h-[368px] object-cover "
-                src={productItem.image}
-                alt={productItem.name}
-              />
-            </div>
-            <Link to={"/shop"}>
-              <Button className="flex">
+        {products.slice(0, 3).map((productItem) => {
+          return (
+            <div
+              key={productItem._id}
+              className="
+            flex items-center flex-col justify-center
+            ">
+              <Text varient="heading-three">{productItem.name}</Text>
+              <div className="bg-cream rounded-[18px] p-4  my-[32px]">
+                <img
+                  width={368}
+                  height={368}
+                  className="w-[368px] h-[368px] object-cover"
+                  src={productItem.image}
+                  alt="image"
+                />
+              </div>
+              <Button className="flex" onClick={navigateToShop}>
                 <Icon name="arrow-small-right" />
-                <span className="ml-[10px]">Shop Now</span>
+                <span className="ml-[10px]">Shop now</span>
               </Button>
-            </Link>
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
       <div className="mt-[180px] mx-[50px] max-w-3xl">
         <Text varient="heading-one">Komorebi hoodies</Text>
