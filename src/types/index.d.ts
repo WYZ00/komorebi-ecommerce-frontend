@@ -5,3 +5,14 @@ export interface IProduct {
   description: string;
   price: number;
 }
+
+interface ICartItem {
+  name: string;
+  id: string;
+  price: number;
+  image: string;
+  quantity: number;
+  product: string;
+}
+
+type RawCartItem = Pick<ICartItem, "image" | "name" | "price" | "product">;

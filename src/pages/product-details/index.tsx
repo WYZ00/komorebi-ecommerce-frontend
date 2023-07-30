@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { IProduct } from "../../types";
+import { IProduct, RawCartItem } from "../../types";
 import axios from "../../api/axios";
 import Text from "../../components/text";
 import Button from "../../components/button";
+import useGlobalStore from "../../store";
 
 const ProductDetails = () => {
   const { id } = useParams();
+
+  const { addItemToCart, cart } = useGlobalStore();
+  console.log(cart);
 
   const [product, setProduct] = useState<IProduct>();
 
@@ -46,7 +50,21 @@ const ProductDetails = () => {
           <Text varient="body-two" className="">
             {product?.description}
           </Text>
-          <Button size="small" className="mt-14">
+          <Button
+            size="small"
+            className="mt-14"
+            onClick={() => {
+              if (!product) return;
+              const cartItem: RawCartItem = {
+                image: product?.image,
+                name: product?.name,
+                price: product?.price,
+                product: product?._id,
+              };
+              addItemToCart({
+                ...cartItem,
+              });
+            }}>
             ADD TO BAG
           </Button>
         </div>

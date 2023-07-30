@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import Text from "../../components/text";
-import { IProduct } from "../../types";
+import { IProduct, RawCartItem } from "../../types";
 import axios from "../../api/axios";
 import Button from "../../components/button";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import useGlobalStore from "../../store";
+import { toast } from "react-hot-toast";
 
 const Shop = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
-
-  const navigate = useNavigate();
+  const { addItemToCart } = useGlobalStore();
 
   const getProducts = async () => {
     try {
@@ -51,15 +52,17 @@ const Shop = () => {
         <div className="grid grid-cols-3 gap-[38px] mb-[180px]">
           {products.map((product) => (
             <div key={product._id}>
-              <div className="rounded-[18px]">
-                <img
-                  className="w-[368px] h-[368px]"
-                  src={product.image}
-                  alt={product.name}
-                  width={368}
-                  height={368}
-                />
-              </div>
+              <Link to={`/shop/${product._id}`}>
+                <div className="rounded-[18px]">
+                  <img
+                    className="w-[368px] h-[368px]"
+                    src={product.image}
+                    alt={product.name}
+                    width={368}
+                    height={368}
+                  />
+                </div>
+              </Link>
               <Text varient="heading-three" className="mt-7 mb-2">
                 {product.name}
               </Text>
@@ -68,7 +71,14 @@ const Shop = () => {
                 size="small"
                 className="mt-7"
                 onClick={() => {
-                  navigate(`/shop/${product._id}`);
+                  const cartItem: RawCartItem = {
+                    image: product.image,
+                    name: product.name,
+                    price: product.price,
+                    product: product._id,
+                  };
+                  addItemToCart(cartItem);
+                  toast.success("Item added to cart");
                 }}>
                 Add to bag
               </Button>
