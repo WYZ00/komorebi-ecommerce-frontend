@@ -18,7 +18,7 @@ type Variant =
 
 type TextProps = {
   children: React.ReactNode | React.ReactNode[];
-  varient: Variant;
+  variant: Variant;
   className?: string;
 };
 
@@ -28,28 +28,27 @@ const variants: Record<Variant, string> = {
   "heading-three": "text-[32px] font-bold leading-[41px] text-raisin-black",
   "heading-four": "text-[24px] font-bold leading-[31px] text-raisin-black",
   "subheading-one":
-    "text-[28px] font-semi-bold leading-[42px] text-raisin-black",
+    "text-[28px] font-semibold leading-[42px] text-raisin-black",
   "subheading-two":
-    "text-[20px] font-semi-bold leading-[30px] text-raisin-black",
-  "subheading-three":
-    "text-base font-semi-bold leading-[24px] text-raisin-black",
+    "text-[20px] font-semibold leading-[30px] text-raisin-black",
+  "subheading-three": "text-base font-semibold text-raisin-black",
   "body-one": "text-[28px] leading-[42px] text-raisin-black",
   "body-two": "text-xl leading-[30px] text-raisin-black",
   "body-three": "text-base text-raisin-black",
   "caption-one": "uppercase text-base text-raisin-black",
   "caption-two": "uppercase text-base font-semibold text-raisin-black",
   "caption-three": "uppercase text-base font-semibold text-raisin-black",
-  "caption-four": "uppercase text-xl leading-[18px] text-raisin-black",
+  "caption-four": "uppercase text-xs leading-[18px] text-raisin-black",
 };
 
 const Text = ({
   children,
-  varient = "heading-one",
+  variant = "body-one",
   className,
   ...props
 }: TextProps) => {
   return (
-    <p className={clsx(variants[varient], className)} {...props}>
+    <p className={clsx(variants[variant], className)} {...props}>
       {children}
     </p>
   );
